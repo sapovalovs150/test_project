@@ -33,7 +33,6 @@ const userController = {
         try {
             const { name, email, birth_date, phone, position, description } = req.body;
 
-            // Валидация обязательных полей
             if (!name || name.trim() === '') {
                 return res.status(400).json({ error: 'Имя обязательно' });
             }
@@ -41,7 +40,6 @@ const userController = {
                 return res.status(400).json({ error: 'Email обязателен' });
             }
 
-            // Проверка формата email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 return res.status(400).json({ error: 'Неверный формат email' });
@@ -51,7 +49,7 @@ const userController = {
             if (birth_date) {
                 const birthDateObj = new Date(birth_date);
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); // начало сегодняшнего дня
+                today.setHours(0, 0, 0, 0);
                 if (birthDateObj > today) {
                     return res.status(400).json({ error: 'Дата рождения не может быть в будущем' });
                 }
@@ -94,7 +92,6 @@ const userController = {
                 return res.status(400).json({ error: 'Неверный формат email' });
             }
 
-            // Проверка даты рождения (не должна быть в будущем)
             if (birth_date) {
                 const birthDateObj = new Date(birth_date);
                 const today = new Date();

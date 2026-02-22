@@ -36,7 +36,6 @@ const UserForm = ({ user, onSubmit, onCancel }) => {
     onSubmit(formData);
   };
 
-  // Получаем сегодняшнюю дату в формате YYYY-MM-DD для ограничения
   const today = new Date().toISOString().split('T')[0];
 
   return (
@@ -78,7 +77,7 @@ const UserForm = ({ user, onSubmit, onCancel }) => {
             name="birth_date"
             value={formData.birth_date}
             onChange={handleChange}
-            max={today} // запрещает выбор будущих дат
+            max={today}
           />
         </div>
 

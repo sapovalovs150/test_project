@@ -18,7 +18,7 @@ const testConnection = async () => {
         connection = await pool.getConnection();
         console.log('✅ Connected to MySQL database');
         
-        // Критически важно! Устанавливаем все параметры кодировки
+        // Устанавливаем все параметры кодировки
         await connection.query('SET NAMES utf8mb4');
         await connection.query('SET CHARACTER SET utf8mb4');
         await connection.query('SET character_set_client = utf8mb4');

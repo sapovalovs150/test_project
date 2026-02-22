@@ -9,14 +9,12 @@ const { testConnection } = require('./config/database');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Настройка CORS и кодировок
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Важно: устанавливаем правильный Content-Type для всех ответов
 app.use((req, res, next) => {
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     next();
@@ -25,10 +23,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
 app.use('/api/users', userRoutes);
 
-// Health check
 app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date() });
 });

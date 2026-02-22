@@ -1,8 +1,13 @@
--- Устанавливаем правильную кодировку
-ALTER DATABASE user_management CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Устанавливаем кодировку для соединения
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+SET character_set_connection=utf8mb4;
+
+-- Удаляем таблицу если есть (для чистой инициализации)
+DROP TABLE IF EXISTS users;
 
 -- Создаем таблицу с расширенными полями
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -13,7 +18,7 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Добавляем тестовые данные с нормальными русскими буквами
+-- Добавляем тестовые данные
 INSERT INTO users (name, email, birth_date, phone, position, description) VALUES
 ('Иван Петров', 'ivan.petrov@example.com', '1990-05-15', '+7 (999) 123-45-67', 'Администратор', 'Отвечает за общую координацию'),
 ('Мария Иванова', 'maria.ivanova@example.com', '1988-11-23', '+7 (999) 234-56-78', 'Менеджер проектов', 'Управляет командой разработки'),
